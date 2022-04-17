@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.*
 import androidx.core.os.bundleOf
 import androidx.fragment.app.*
-import androidx.lifecycle.*
 import com.example.weather.*
 import com.example.weather.databinding.FragmentDaysWeatherBinding
 import com.example.weather.common.domain.model.WeatherTime
@@ -12,10 +11,8 @@ import com.example.weather.common.utils.*
 import com.example.weather.days.screens.DialogSearchFragment.Companion.TOWN_KEY
 import com.example.weather.days.screens.DialogSearchFragment.Companion.REQUEST_KEY
 import com.example.weather.days.utils.doOnEnd
-import com.example.weather.daytime.*
 import com.example.weather.daytime.screens.DayTimeWeatherFragment.Companion.DAY_POS_KEY
 import com.example.weather.daytime.screens.DayTimeWeatherFragment.Companion.DAY_TOWN_KEY
-import com.google.android.material.appbar.AppBarLayout.*
 import com.mikepenz.fastadapter.adapters.FastItemAdapter
 
 private const val APP_BAR_LAYOUT_EXPANDED_KEY = "app.bar.layout.is.expanded.key"
@@ -26,7 +23,7 @@ class DaysWeatherFragment : Fragment() {
 
     private var appBarLayoutIsExpanded = true
 
-    private val viewModel : DaysWeatherViewModel by viewModels { getViewModelFactory() }
+    private val viewModel: DaysWeatherViewModel by viewModels { getViewModelFactory() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,7 +38,7 @@ class DaysWeatherFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ) = FragmentDaysWeatherBinding
         .inflate(layoutInflater, container, false)
         .also { _binding = it }
@@ -64,7 +61,7 @@ class DaysWeatherFragment : Fragment() {
             viewModel.town.observe(viewLifecycleOwner) { binding.title.text = it }
             viewModel.thisDescription.observe(viewLifecycleOwner) { precipitationTv.text = it }
             viewModel.thisWeatherImage.observe(viewLifecycleOwner) { weatherIm.loadByUrl(it) }
-            viewModel.weatherByDays.observe(viewLifecycleOwner) { setData(it) }
+            viewModel.weatherByDays.observe(viewLifecycleOwner) { setItems(it) }
             viewModel.onErrorMessage.observe(viewLifecycleOwner) { showMessage(it) }
             viewModel.openFragmentEvent.observe(viewLifecycleOwner) { openTimeWeatherFragment(it) }
             viewModel.thisTemperature.observe(viewLifecycleOwner) {
@@ -91,11 +88,11 @@ class DaysWeatherFragment : Fragment() {
         )
     }
 
-    private fun setData(list: List<WeatherTime>) {
-        val data = list.map { wt -> DaysWeatherItemAdapter(wt) }
+    private fun setItems(weatherTimeItems: List<WeatherTime>) {
+        val items = weatherTimeItems.map { wt -> DaysWeatherItemAdapter(wt) }
         binding.weatherRv
-            .getFastAdapter(DaysWeatherItemAdapter::class.java)
-            .setData(data)
+            .getFastAdapter<DaysWeatherItemAdapter>()
+            .setItems(items)
     }
 
     private fun searchDialogProcessingResult(bundle: Bundle) {

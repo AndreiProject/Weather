@@ -14,6 +14,12 @@ import com.squareup.picasso.Picasso
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
+fun ImageView.loadByUrl(imgUrl: String) {
+    if (imgUrl.isNotBlank()) {
+        Picasso.get().load(imgUrl).error(R.drawable.ic_cloud).into(this)
+    }
+}
+
 fun Fragment.showMessage(message: String) {
     Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
 }
@@ -22,27 +28,18 @@ fun Fragment.getNavController() = Navigation.findNavController(requireView())
 
 fun Fragment.getViewModelFactory() = requireActivity().appComponent.factory
 
-fun <T : GenericItem> RecyclerView.getFastAdapter(adapterItemType: Class<T>) =
-    adapter as FastItemAdapter<T>
+fun <T : GenericItem> RecyclerView.getFastAdapter() = adapter as FastItemAdapter<T>
 
-fun <T : GenericItem> FastItemAdapter<T>.setData(listItemAdapter: List<T>) {
-    FastAdapterDiffUtil[itemAdapter] = listItemAdapter
+fun <T : GenericItem> FastItemAdapter<T>.setItems(items: List<T>) {
+    FastAdapterDiffUtil[itemAdapter] = items
 }
 
 fun <T> Flow<T>.observe(
     lifecycleOwner: LifecycleOwner,
     state: Lifecycle.State = Lifecycle.State.STARTED,
-    observer: (T) -> Unit
-) {
-    lifecycleOwner.lifecycleScope.launch {
-        lifecycleOwner.repeatOnLifecycle(state) {
-            collect { value -> observer(value) }
-        }
-    }
-}
-
-fun ImageView.loadByUrl(imgUrl: String) {
-    if (imgUrl.isNotBlank()) {
-        Picasso.get().load(imgUrl).error(R.drawable.ic_cloud).into(this)
+    observer: (T) -> Unit,
+) = lifecycleOwner.lifecycleScope.launch {
+    lifecycleOwner.repeatOnLifecycle(state) {
+        collect { value -> observer(value) }
     }
 }
