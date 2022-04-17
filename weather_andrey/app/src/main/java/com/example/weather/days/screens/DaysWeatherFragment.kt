@@ -2,28 +2,27 @@ package com.example.weather.days.screens
 
 import android.os.Bundle
 import android.view.*
+import com.example.weather.common.utils.*
+import com.example.weather.days.utils.doOnEnd
 import androidx.core.os.bundleOf
 import androidx.fragment.app.*
 import com.example.weather.*
 import com.example.weather.databinding.FragmentDaysWeatherBinding
 import com.example.weather.common.domain.model.WeatherTime
-import com.example.weather.common.utils.*
+import com.example.weather.common.fragments.BindingFragment
 import com.example.weather.days.screens.DialogSearchFragment.Companion.TOWN_KEY
 import com.example.weather.days.screens.DialogSearchFragment.Companion.REQUEST_KEY
-import com.example.weather.days.utils.doOnEnd
 import com.example.weather.daytime.screens.DayTimeWeatherFragment.Companion.DAY_POS_KEY
 import com.example.weather.daytime.screens.DayTimeWeatherFragment.Companion.DAY_TOWN_KEY
 import com.mikepenz.fastadapter.adapters.FastItemAdapter
 
 private const val APP_BAR_LAYOUT_EXPANDED_KEY = "app.bar.layout.is.expanded.key"
 
-class DaysWeatherFragment : Fragment() {
-    private var _binding: FragmentDaysWeatherBinding? = null
-    private val binding get() = _binding!!
-
-    private var appBarLayoutIsExpanded = true
-
+class DaysWeatherFragment : BindingFragment<FragmentDaysWeatherBinding>(
+    FragmentDaysWeatherBinding::inflate
+) {
     private val viewModel: DaysWeatherViewModel by viewModels { getViewModelFactory() }
+    private var appBarLayoutIsExpanded = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,15 +33,6 @@ class DaysWeatherFragment : Fragment() {
                 savedInstanceState.getBoolean(APP_BAR_LAYOUT_EXPANDED_KEY, appBarLayoutIsExpanded)
         }
     }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ) = FragmentDaysWeatherBinding
-        .inflate(layoutInflater, container, false)
-        .also { _binding = it }
-        .root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -108,10 +98,8 @@ class DaysWeatherFragment : Fragment() {
     }
 
     override fun onDestroyView() {
-        super.onDestroyView()
         childFragmentManager.clearFragmentResultListener(REQUEST_KEY)
-        binding.weatherRv.adapter = null
-        _binding = null
+        super.onDestroyView()
     }
 
     companion object {

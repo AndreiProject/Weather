@@ -5,27 +5,18 @@ import android.view.*
 import androidx.fragment.app.*
 import com.example.weather.databinding.FragmentDayTimeWeatherBinding
 import com.example.weather.common.domain.model.WeatherTime
+import com.example.weather.common.fragments.BindingFragment
 import com.example.weather.common.utils.*
 import com.example.weather.days.screens.DaysWeatherFragment.Companion.TOWN_ID
 import com.mikepenz.fastadapter.adapters.FastItemAdapter
 
-class DayTimeWeatherFragment : Fragment() {
-    private var _binding: FragmentDayTimeWeatherBinding? = null
-    private val binding get() = _binding!!
-
+class DayTimeWeatherFragment : BindingFragment<FragmentDayTimeWeatherBinding>(
+    FragmentDayTimeWeatherBinding::inflate
+) {
     private val townId get() = arguments?.getString(DAY_TOWN_KEY) ?: TOWN_ID
     private val dayPos get() = arguments?.getInt(DAY_POS_KEY) ?: 0
 
     private val viewModel by viewModels<DayTimeWeatherViewModel>() { getViewModelFactory() }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ) = FragmentDayTimeWeatherBinding
-        .inflate(layoutInflater, container, false)
-        .also { _binding = it }
-        .root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -50,17 +41,11 @@ class DayTimeWeatherFragment : Fragment() {
         }
     }
 
-    private fun setData(list: List<WeatherTime>) {
-        val data = list.map { wt -> DayTimeWeatherItemAdapter(wt) }
+    private fun setData(weatherTimeItems: List<WeatherTime>) {
+        val items = weatherTimeItems.map { wt -> DayTimeWeatherItemAdapter(wt) }
         binding.weatherRv
-            .getFastAdapter(DayTimeWeatherItemAdapter::class.java)
-            .setData(data)
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        binding.weatherRv.adapter = null
-        _binding = null
+            .getFastAdapter<DayTimeWeatherItemAdapter>()
+            .setItems(items)
     }
 
     companion object {

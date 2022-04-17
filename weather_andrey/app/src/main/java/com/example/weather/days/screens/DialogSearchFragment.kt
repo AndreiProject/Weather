@@ -25,7 +25,7 @@ class DialogSearchFragment : DialogFragment() {
     }
 
     private fun buildFragmentDialog(
-        binding: FragmentSearchDialogBinding
+        binding: FragmentSearchDialogBinding,
     ) = AlertDialog.Builder(requireContext())
         .setTitle(getString(R.string.fragment_search_dialog_title))
         .setMessage(getString(R.string.fragment_search_dialog_title_input))
@@ -34,18 +34,13 @@ class DialogSearchFragment : DialogFragment() {
         .setNegativeButton(getString(R.string.fragment_search_dialog_negative_button)) { _, _ -> }
         .create()
 
-    private fun onClick(
-        dialog: AlertDialog,
-        binding: FragmentSearchDialogBinding
-    ) {
-        with(binding) {
-            textTown.text?.let {
-                if (it.isNotBlank()) {
-                    sendResultParentFragment(it.toString())
-                    dialog.dismiss()
-                } else {
-                    textTownLayout.error = getString(R.string.fragment_search_dialog_text_warning)
-                }
+    private fun onClick(dialog: AlertDialog, binding: FragmentSearchDialogBinding) = with(binding) {
+        textTown.text?.let {
+            if (it.isNotBlank()) {
+                sendResultParentFragment(it.toString())
+                dialog.dismiss()
+            } else {
+                textTownLayout.error = getString(R.string.fragment_search_dialog_text_warning)
             }
         }
     }
@@ -56,14 +51,10 @@ class DialogSearchFragment : DialogFragment() {
         })
     }
 
-    private fun addOnTextChanged(
-        binding: FragmentSearchDialogBinding
-    ) {
-        with(binding) {
-            textTown.doOnTextChanged { _, _, _, _ ->
-                if (textTownLayout.isErrorEnabled) {
-                    textTownLayout.isErrorEnabled = false
-                }
+    private fun addOnTextChanged(binding: FragmentSearchDialogBinding) = with(binding) {
+        textTown.doOnTextChanged { _, _, _, _ ->
+            if (textTownLayout.isErrorEnabled) {
+                textTownLayout.isErrorEnabled = false
             }
         }
     }
