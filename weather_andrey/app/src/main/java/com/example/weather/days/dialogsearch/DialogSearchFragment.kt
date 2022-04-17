@@ -2,6 +2,10 @@ package com.example.weather.days.dialogsearch
 
 import android.app.Dialog
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.view.Window
 import androidx.appcompat.app.AlertDialog
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.*
@@ -11,22 +15,23 @@ import com.example.weather.databinding.FragmentSearchDialogBinding
 private val TAG = DialogSearchFragment::class.simpleName
 
 class DialogSearchFragment : DialogFragment() {
+    private var _binding: FragmentSearchDialogBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val binding = FragmentSearchDialogBinding.inflate(layoutInflater)
-        val dialog = buildFragmentDialog(binding)
+        _binding = FragmentSearchDialogBinding.inflate(layoutInflater)
+        val dialog = buildFragmentDialog()
 
         dialog.setOnShowListener {
             val button = dialog.getButton(AlertDialog.BUTTON_POSITIVE)
             button.setOnClickListener { onClick(dialog, binding) }
         }
-        addOnTextChanged(binding)
+        addOnTextChanged()
         return dialog
     }
 
-    private fun buildFragmentDialog(
-        binding: FragmentSearchDialogBinding,
-    ) = AlertDialog.Builder(requireContext())
+    private fun buildFragmentDialog() = AlertDialog
+        .Builder(requireContext())
         .setTitle(getString(R.string.fragment_search_dialog_title))
         .setMessage(getString(R.string.fragment_search_dialog_title_input))
         .setView(binding.root)
@@ -51,12 +56,17 @@ class DialogSearchFragment : DialogFragment() {
         })
     }
 
-    private fun addOnTextChanged(binding: FragmentSearchDialogBinding) = with(binding) {
+    private fun addOnTextChanged() = with(binding) {
         textTown.doOnTextChanged { _, _, _, _ ->
             if (textTownLayout.isErrorEnabled) {
                 textTownLayout.isErrorEnabled = false
             }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     companion object {
