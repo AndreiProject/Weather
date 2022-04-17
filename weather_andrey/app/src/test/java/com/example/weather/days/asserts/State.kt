@@ -1,6 +1,6 @@
 package com.example.weather.days.asserts
 
-import com.example.weather.common.domain.model.WeatherTime
+import com.example.weather.common.usecases.models.WeatherTime
 
 internal data class State(
     val town: String = "",

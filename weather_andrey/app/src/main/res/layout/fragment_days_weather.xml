@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.example.weather.days.ui.SwipeRefreshMotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.example.weather.common.ui.SwipeRefreshMotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/motion_root"
@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/background"
     app:layoutDescription="@xml/motion_days_weather"
-    tools:context="com.example.weather.days.screens.DaysWeatherFragment">
+    tools:context="com.example.weather.days.DaysWeatherFragment">
 
     <View
         android:id="@+id/app_bar_indent"
@@ -109,4 +109,4 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/days_weather_item" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-</com.example.weather.days.ui.SwipeRefreshMotionLayout>
+</com.example.weather.common.ui.SwipeRefreshMotionLayout>

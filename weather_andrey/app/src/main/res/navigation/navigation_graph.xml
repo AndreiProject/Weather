@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/daysWeatherFragment"
-        android:name="com.example.weather.days.screens.DaysWeatherFragment"
+        android:name="com.example.weather.days.DaysWeatherFragment"
         android:label="fragment_days_weather"
         tools:layout="@layout/fragment_days_weather" >
         <action
@@ -18,7 +18,7 @@
     </fragment>
     <fragment
         android:id="@+id/dayTimeWeatherFragment"
-        android:name="com.example.weather.daytime.screens.DayTimeWeatherFragment"
+        android:name="com.example.weather.daytime.DayTimeWeatherFragment"
         android:label="fragment_day_time_weather"
         tools:layout="@layout/fragment_day_time_weather" />
 </navigation>

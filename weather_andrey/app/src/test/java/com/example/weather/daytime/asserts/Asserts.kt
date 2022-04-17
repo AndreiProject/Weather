@@ -1,6 +1,6 @@
 package com.example.weather.daytime.asserts
 
-import com.example.weather.daytime.screens.DayTimeWeatherViewModel
+import com.example.weather.daytime.DayTimeWeatherViewModel
 import org.junit.jupiter.api.Assertions.assertEquals
 
 internal fun assertVmStateEquals(

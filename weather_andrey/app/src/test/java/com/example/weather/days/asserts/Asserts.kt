@@ -1,6 +1,6 @@
 package com.example.weather.days.asserts
 
-import com.example.weather.days.screens.DaysWeatherViewModel
+import com.example.weather.days.DaysWeatherViewModel
 import kotlinx.coroutines.flow.first
 import org.junit.jupiter.api.Assertions.*
 

@@ -1,8 +1,9 @@
 package com.example.weather.common.di.module
 
-import com.example.weather.common.data.repository.*
-import com.example.weather.common.data.repository.service.Service
-import com.example.weather.common.data.source.Client
+import com.example.weather.common.network.repository.*
+import com.example.weather.common.network.repository.Service
+import com.example.weather.common.network.source.Client
+import com.example.weather.common.usecases.WeatherRepository
 import dagger.*
 import javax.inject.Singleton
 
@@ -14,5 +15,5 @@ class RepositoryModule {
 
     @Singleton
     @Provides
-    fun provideRepository(service: Service): Repository = AppRepository(service)
+    fun provideRepository(service: Service): WeatherRepository = WeatherRepositoryImpl(service)
 }

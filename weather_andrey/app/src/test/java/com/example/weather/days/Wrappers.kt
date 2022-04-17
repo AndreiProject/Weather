@@ -1,8 +1,8 @@
 package com.example.weather.days
 
-import com.example.weather.common.data.*
-import com.example.weather.common.domain.*
-import com.example.weather.common.data.repository.AppRepository
+import com.example.weather.common.network.*
+import com.example.weather.common.usecases.*
+import com.example.weather.common.network.repository.WeatherRepositoryImpl
 import com.example.weather.days.asserts.State
 
 internal const val TOWN = "Тамбов"
@@ -28,7 +28,7 @@ internal fun getDaysWeatherVMStatePostUpdate(): State {
     )
 }
 
-internal fun getUseCase(repository: AppRepository): WeatherUseCaseContract {
+internal suspend fun getUseCase(repository: WeatherRepositoryImpl): WeatherGetter {
     val weatherInfoTempMax = getWeatherInfoModel(temp = TEMP_MAX, dateText = DATE_TEXT)
     val weatherInfoTempMin = getWeatherInfoModel(temp = TEMP_MIN, dateText = DATE_TEXT)
 
@@ -42,10 +42,10 @@ internal fun getUseCase(repository: AppRepository): WeatherUseCaseContract {
 
     val result = getResponseModel(town = TOWN, list = listWeatherInfo)
     repositoryMock_GetWeatherMethod_ThenReturn(repository, result)
-    return WeatherUseCase(repository)
+    return WeatherGetterImpl(repository)
 }
 
-internal fun getUseCase_ThrowError(repository: AppRepository): WeatherUseCaseContract {
+internal fun getUseCase_ThrowError(repository: WeatherRepositoryImpl): WeatherGetter {
     repositoryMock_GetWeatherMethod_ThenReturn_BodyIsNull(repository)
-    return WeatherUseCase(repository)
+    return WeatherGetterImpl(repository)
 }

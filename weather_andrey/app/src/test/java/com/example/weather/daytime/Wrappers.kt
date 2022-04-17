@@ -1,12 +1,12 @@
 package com.example.weather.daytime
 
-import com.example.weather.common.data.*
-import com.example.weather.common.data.repository.AppRepository
-import com.example.weather.common.data.repositoryMock_GetWeatherMethod_ThenReturn
-import com.example.weather.common.domain.*
+import com.example.weather.common.network.*
+import com.example.weather.common.network.repository.WeatherRepositoryImpl
+import com.example.weather.common.network.repositoryMock_GetWeatherMethod_ThenReturn
+import com.example.weather.common.usecases.*
 import com.example.weather.daytime.asserts.State
-import com.example.weather.common.utils.DAY_FULL_TIME_PATTERN
-import com.example.weather.common.utils.formatToString
+import com.example.weather.common.extension.DAY_FULL_TIME_PATTERN
+import com.example.weather.common.extension.formatToString
 import java.time.*
 import java.util.*
 
@@ -34,9 +34,9 @@ internal fun getDayTimeWeatherVMStatePostUpdate(): State {
     )
 }
 
-internal fun getUseCase(repository: AppRepository): WeatherUseCaseContract {
+internal suspend fun getUseCase(repository: WeatherRepositoryImpl): WeatherGetter {
     val weatherInfo = getWeatherInfoModel(temp = TEMP, dateText = DATE_TEXT)
     val result = getResponseModel(town = TOWN, list = listOf(weatherInfo))
     repositoryMock_GetWeatherMethod_ThenReturn(repository, result)
-    return WeatherUseCase(repository)
+    return WeatherGetterImpl(repository)
 }
