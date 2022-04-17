@@ -1,4 +1,4 @@
-package com.example.weather.days
+package com.example.weather.days.dialogsearch
 
 import android.app.Dialog
 import android.os.Bundle

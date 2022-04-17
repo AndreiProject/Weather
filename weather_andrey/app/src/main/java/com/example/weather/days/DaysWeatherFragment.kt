@@ -9,8 +9,9 @@ import com.example.weather.*
 import com.example.weather.databinding.FragmentDaysWeatherBinding
 import com.example.weather.common.usecases.models.WeatherTime
 import com.example.weather.common.fragments.BindingFragment
-import com.example.weather.days.DialogSearchFragment.Companion.TOWN_KEY
-import com.example.weather.days.DialogSearchFragment.Companion.REQUEST_KEY
+import com.example.weather.days.dialogsearch.DialogSearchFragment
+import com.example.weather.days.dialogsearch.DialogSearchFragment.Companion.REQUEST_KEY
+import com.example.weather.days.dialogsearch.DialogSearchFragment.Companion.TOWN_KEY
 import com.example.weather.daytime.DayTimeWeatherFragment.Companion.DAY_POS_KEY
 import com.example.weather.daytime.DayTimeWeatherFragment.Companion.DAY_TOWN_KEY
 import com.mikepenz.fastadapter.adapters.FastItemAdapter
