@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/daysWeatherFragment">
+
+    <fragment
+        android:id="@+id/daysWeatherFragment"
+        android:name="com.example.weather.days.screens.DaysWeatherFragment"
+        android:label="fragment_days_weather"
+        tools:layout="@layout/fragment_days_weather" >
+        <action
+            android:id="@+id/navigationToDayTimeWeatherFragment"
+            app:destination="@id/dayTimeWeatherFragment"
+            app:enterAnim="@anim/start"
+            app:popExitAnim="@anim/end" />
+    </fragment>
+    <fragment
+        android:id="@+id/dayTimeWeatherFragment"
+        android:name="com.example.weather.daytime.screens.DayTimeWeatherFragment"
+        android:label="fragment_day_time_weather"
+        tools:layout="@layout/fragment_day_time_weather" />
+</navigation>

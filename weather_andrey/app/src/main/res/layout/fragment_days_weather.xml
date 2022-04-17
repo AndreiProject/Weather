@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.weather.days.ui.SwipeRefreshMotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/motion_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    app:layoutDescription="@xml/motion_days_weather"
+    tools:context="com.example.weather.days.screens.DaysWeatherFragment">
+
+    <View
+        android:id="@+id/app_bar_indent"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fragment_days_weather_layout_height"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:alpha="0.7"
+        android:background="@drawable/shadow"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/main_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fragment_days_weather_toolbar_layout_height" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="@dimen/fragment_days_weather_title_text_size"
+        app:layout_constraintBottom_toBottomOf="@id/main_layout"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="@string/app_name" />
+
+    <ImageView
+        android:id="@+id/search_im"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:paddingStart="@dimen/fragment_days_weather_search_im_padding_start"
+        android:paddingTop="@dimen/fragment_days_weather_search_im_padding_top"
+        android:paddingEnd="@dimen/fragment_days_weather_search_im_padding_end"
+        android:paddingBottom="@dimen/fragment_days_weather_search_im_padding_bottom"
+        android:src="@drawable/ic_search"
+        app:layout_collapseMode="pin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/weather_im"
+        android:layout_width="@dimen/fragment_days_weather_im_size"
+        android:layout_height="@dimen/fragment_days_weather_im_size"
+        app:layout_constraintBottom_toBottomOf="@+id/main_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/main_layout"
+        tools:src="@drawable/ic_cloud" />
+
+    <TextView
+        android:id="@+id/day_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/fragment_days_weather_margin_start"
+        android:layout_marginTop="@dimen/fragment_days_weather_margin_top"
+        android:text="@string/fragment_days_day"
+        android:textColor="@color/turquoise"
+        android:textSize="@dimen/fragment_days_weather_day_ts"
+        android:textStyle="italic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/main_layout" />
+
+    <TextView
+        android:id="@+id/temperature_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/fragment_days_weather_temperature_margin_top"
+        android:textColor="@color/turquoise"
+        android:textSize="@dimen/fragment_days_weather_temperature_ts"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/day_tv"
+        app:layout_constraintTop_toBottomOf="@+id/day_tv"
+        tools:text="@string/weather_temperature" />
+
+    <TextView
+        android:id="@+id/precipitation_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/fragment_days_weather_precipitation_marginTop"
+        android:textColor="@color/black"
+        android:textSize="@dimen/fragment_days_weather_day_precipitation_ts"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/temperature_tv"
+        app:layout_constraintTop_toBottomOf="@+id/temperature_tv"
+        tools:text="@string/fragment_days_day_precipitation" />
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_layout">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/weather_rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/days_weather_item" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</com.example.weather.days.ui.SwipeRefreshMotionLayout>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="weather_item_margin">7dp</dimen>
+    <dimen name="days_weather_item_precipitation_ts">14sp</dimen>
+    <dimen name="days_weather_item_wind_ts">14sp</dimen>
+    <dimen name="days_weather_item_pressure_ts">14sp</dimen>
+    <dimen name="days_weather_item_image_margin">20dp</dimen>
+    <dimen name="days_weather_item_temperature_ts">18sp</dimen>
+    <dimen name="days_weather_item_pressure_margin">8dp</dimen>
+    <dimen name="days_weather_item_wind_margin">8dp</dimen>
+    <dimen name="days_weather_item_precipitation_margin">8dp</dimen>
+    <dimen name="days_weather_item_date_ts">18sp</dimen>
+
+    <dimen name="day_time_weather_item_margin">8dp</dimen>
+    <dimen name="day_time_weather_item_date_ts">17sp</dimen>
+    <dimen name="day_time_weather_item_temperature_margin">10dp</dimen>
+    <dimen name="day_time_weather_item_temperature_ts">18sp</dimen>
+    <dimen name="day_time_weather_item_image_margin">20dp</dimen>
+
+    <dimen name="fragment_days_weather_day_ts">20sp</dimen>
+    <dimen name="fragment_days_weather_margin_start">15dp</dimen>
+    <dimen name="fragment_days_weather_margin_top">13dp</dimen>
+    <dimen name="fragment_days_weather_temperature_margin_start">10dp</dimen>
+    <dimen name="fragment_days_weather_temperature_margin_top">7dp</dimen>
+    <dimen name="fragment_days_weather_temperature_ts">26sp</dimen>
+    <dimen name="fragment_days_weather_precipitation_margin_start">10dp</dimen>
+    <dimen name="fragment_days_weather_precipitation_marginTop">7dp</dimen>
+    <dimen name="fragment_days_weather_day_precipitation_ts">18sp</dimen>
+    <dimen name="fragment_days_weather_toolbar_layout_height">220dp</dimen>
+    <dimen name="fragment_days_weather_toolbar_title_margin_end">64dp</dimen>
+    <dimen name="fragment_days_weather_toolbar_title_margin_start">58dp</dimen>
+    <dimen name="fragment_days_weather_weather_im_margin">20dp</dimen>
+    <dimen name="fragment_days_weather_search_im_padding_bottom">20dp</dimen>
+
+    <dimen name="days_weather_item_padding">20dp</dimen>
+    <dimen name="fragment_days_weather_toolbar_layout_padding">10dp</dimen>
+    <dimen name="fragment_days_weather_toolbar_title_expanded_text_size">30sp</dimen>
+    <dimen name="day_time_weather_item_padding">8dp</dimen>
+    <dimen name="day_time_weather_item_date_margin_start">10dp</dimen>
+    <dimen name="day_time_weather_item_temperature_margin_start">10dp</dimen>
+
+    <dimen name="toolbar_title_collapsed_text_size">20sp</dimen>
+    <dimen name="fragment_days_weather_title_text_size">32sp</dimen>
+    <dimen name="fragment_days_weather_im_size">100dp</dimen>
+    <dimen name="days_weather_item_weather_size">50dp</dimen>
+    <dimen name="day_time_weather_item_weather_size">40dp</dimen>
+
+    <dimen name="progress_bar_size">35dp</dimen>
+    <dimen name="progress_bar_margin">100dp</dimen>
+    <dimen name="progress_bar_elevation">8dp</dimen>
+    <dimen name="progress_bar_padding">6dp</dimen>
+    <dimen name="progress_bar_radius">100dp</dimen>
+
+    <dimen name="fragment_days_weather_title_margin_start">40dp</dimen>
+    <dimen name="fragment_days_weather_title_margin_bottom">24dp</dimen>
+    <dimen name="fragment_days_weather_title_margin_top">7dp</dimen>
+    <dimen name="fragment_days_weather_search_im_padding_top">18dp</dimen>
+    <dimen name="fragment_days_weather_search_im_padding_end">20dp</dimen>
+    <dimen name="fragment_days_weather_search_im_padding_start">40dp</dimen>
+    <dimen name="fragment_search_dialog_padding">15dp</dimen>
+    <dimen name="fragment_days_weather_layout_height">3dp</dimen>
+</resources>

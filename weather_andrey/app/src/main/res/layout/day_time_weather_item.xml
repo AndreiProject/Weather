@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/day_tw_id"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/day_time_weather_item_margin"
+    android:background="@drawable/rounded_corner"
+    android:padding="@dimen/day_time_weather_item_padding">
+
+    <TextView
+        android:id="@+id/date_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/day_time_weather_item_date_margin_start"
+        android:textSize="@dimen/day_time_weather_item_date_ts"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/temperature_tv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="@string/day_time_weather_item_date" />
+
+    <TextView
+        android:id="@+id/temperature_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/day_time_weather_item_temperature_margin_start"
+        android:layout_marginTop="@dimen/day_time_weather_item_temperature_margin"
+        android:textColor="@color/turquoise"
+        android:textSize="@dimen/day_time_weather_item_temperature_ts"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/date_tv"
+        tools:text="@string/weather_temperature" />
+
+    <ImageView
+        android:id="@+id/weather_im"
+        android:layout_width="@dimen/day_time_weather_item_weather_size"
+        android:layout_height="@dimen/day_time_weather_item_weather_size"
+        android:layout_margin="@dimen/day_time_weather_item_image_margin"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_cloud"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="start"
+        app:constraint_referenced_ids="weather_im" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Weather</string>
+    <string name="toolbar_title">Тамбов</string>
+
+    <string name="weather_temperature">%1$d° C</string>
+    <string name="weather_temperature_sr_format">%1$s° C</string>
+
+    <string name="days_weather_item_date">03.07.2020 пт</string>
+    <string name="days_weather_item_precipitation">%1$s %2$s</string>
+    <string name="days_weather_item_wind">ветер %1$s м/с</string>
+    <string name="days_weather_item_pressure">давление %1$d гПа</string>
+
+    <string name="day_time_weather_item_date">03.07.2020 15.00</string>
+
+    <string name="fragment_days_day">сегодня</string>
+    <string name="fragment_days_day_precipitation">ясно</string>
+
+    <string name="fragment_search_dialog_town_hint">Введите город</string>
+    <string name="fragment_search_dialog_title">Город</string>
+    <string name="fragment_search_dialog_title_input">Введите название города</string>
+    <string name="fragment_search_dialog_positive_button">Да</string>
+    <string name="fragment_search_dialog_negative_button">Нет</string>
+    <string name="fragment_search_dialog_text_warning">Введите текст</string>
+</resources>
