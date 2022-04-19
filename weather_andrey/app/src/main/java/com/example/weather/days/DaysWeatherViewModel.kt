@@ -46,7 +46,7 @@ class DaysWeatherViewModel @Inject constructor(
             delay(1000)
             try {
                 val weather = weatherGetter(townId, WEATHER_DAY_INFO * DAY_COUNT)
-                updateValuesData(weather)
+                updateData(weather)
                 _updateDaysWeatherStateProcess.value = false
             } catch (ex: Exception) {
                 Log.e(TAG, ex.toString())
@@ -56,7 +56,7 @@ class DaysWeatherViewModel @Inject constructor(
         }
     }
 
-    private fun updateValuesData(weather: Weather) {
+    private fun updateData(weather: Weather) {
         _town.value = weather.townName
 
         var isNotUpdate = true
