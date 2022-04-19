@@ -6,9 +6,9 @@ import com.example.weather.common.extension.*
 import androidx.core.os.bundleOf
 import androidx.fragment.app.*
 import com.example.weather.*
+import com.example.weather.common.BindingFragment
 import com.example.weather.databinding.FragmentDaysWeatherBinding
 import com.example.weather.common.usecases.models.WeatherTime
-import com.example.weather.common.fragments.BindingFragment
 import com.example.weather.days.dialogsearch.DialogSearchFragment
 import com.example.weather.days.dialogsearch.DialogSearchFragment.Companion.REQUEST_KEY
 import com.example.weather.days.dialogsearch.DialogSearchFragment.Companion.TOWN_KEY

@@ -3,9 +3,9 @@ package com.example.weather.daytime
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.*
+import com.example.weather.common.BindingFragment
 import com.example.weather.databinding.FragmentDayTimeWeatherBinding
 import com.example.weather.common.usecases.models.WeatherTime
-import com.example.weather.common.fragments.BindingFragment
 import com.example.weather.common.extension.*
 import com.example.weather.days.DaysWeatherFragment.Companion.TOWN_ID
 import com.mikepenz.fastadapter.adapters.FastItemAdapter

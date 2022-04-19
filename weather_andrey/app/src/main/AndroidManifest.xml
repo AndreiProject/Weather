@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/NoActionBarTheme">
         <activity
-            android:name="com.example.weather.common.activity.MainActivity"
+            android:name="com.example.weather.common.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
