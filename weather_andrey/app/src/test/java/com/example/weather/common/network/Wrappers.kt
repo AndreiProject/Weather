@@ -1,5 +1,6 @@
 package com.example.weather.common.network
 
+import com.example.weather.common.network.repository.Service
 import com.example.weather.common.network.repository.WeatherRepositoryImpl
 import com.example.weather.common.network.repository.models.*
 import com.example.weather.common.usecases.*
@@ -9,19 +10,27 @@ import retrofit2.Response
 
 internal suspend fun repositoryMock_GetWeatherMethod_ThenReturn(
     repository: WeatherRepositoryImpl,
-    resultMock: WeatherModel
+    resultMock: WeatherModel,
 ) {
-    val result = Single.just(getWeatherModel_TestResponse(resultMock))
-    Mockito.`when`(repository.getWeather(Mockito.anyString(), Mockito.anyInt()))
-        .thenReturn(result)
+    val weather = WeatherRepositoryImpl.convertToWeather(resultMock)
+    Mockito.`when`(repository.getWeather(Mockito.anyString(),
+        Mockito.anyInt(),
+        Mockito.anyString()))
+        .thenReturn(weather)
 }
 
-internal fun repositoryMock_GetWeatherMethod_ThenReturn_BodyIsNull(
-    repository: WeatherRepositoryImpl
-) {
-    val result = Single.just(getWeatherModel_TestResponse(null))
-    Mockito.`when`(repository.getWeather(Mockito.anyString(), Mockito.anyInt()))
-        .thenReturn(result)
+internal suspend fun repositoryMock_GetWeatherMethod_ThenReturn_BodyIsNull(): WeatherRepository {
+    val result = object : Service {
+        override suspend fun getWeather(
+            requestUrl: String,
+            townId: String,
+            keyId: String,
+            cnt: Int,
+            lang: String,
+            units: String,
+        ) = getWeatherModel_TestResponse(null)
+    }
+    return WeatherRepositoryImpl(result)
 }
 
 internal fun getWeatherModel_TestResponse(body: WeatherModel?)
@@ -32,7 +41,7 @@ internal fun getResponseModel(
     message: Long = 0L,
     cnt: Long = 0L,
     town: String = "",
-    list: List<WeatherInfo>
+    list: List<WeatherInfo>,
 ): WeatherModel {
     val city = City(id = 0, town, country = "RU", timezone = 10800)
     return WeatherModel(code, message, cnt, city, list)

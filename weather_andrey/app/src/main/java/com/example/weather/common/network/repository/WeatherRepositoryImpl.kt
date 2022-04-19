@@ -19,37 +19,39 @@ class WeatherRepositoryImpl(private val service: Service) : WeatherRepository {
         return convertToWeather(body)
     }
 
-    private fun convertToWeather(model: WeatherModel): Weather {
-        val townName = model.city.name
-        val cl = Calendar.getInstance()
-        val daysWeatherMap = model.list.asSequence()
-            .map {
-                convertToWeatherTime(it)
-            }
-            .groupBy {
-                cl.time = it.date
-                cl.get(Calendar.DAY_OF_MONTH)
-            }
-        return Weather(townName, daysWeatherMap)
-    }
+    companion object {
+        fun convertToWeather(model: WeatherModel): Weather {
+            val townName = model.city.name
+            val cl = Calendar.getInstance()
+            val daysWeatherMap = model.list.asSequence()
+                .map {
+                    convertToWeatherTime(it)
+                }
+                .groupBy {
+                    cl.time = it.date
+                    cl.get(Calendar.DAY_OF_MONTH)
+                }
+            return Weather(townName, daysWeatherMap)
+        }
 
-    private fun convertToWeatherTime(wi: WeatherInfo): WeatherTime {
-        val state = wi.weather.first()
-        return WeatherTime(
-            description = state.description.lowercase(getLocal()),
-            icon = state.iconConvertToUrl(),
-            temp = wi.main.temp.toInt(),
-            pressure = wi.main.pressure,
-            windSpeed = String.format("%.1f", wi.wind.speed),
-            precipitation = getPrecipitation(wi),
-            date = wi.dateText.convertToDate(DAY_FULL_TIME_PATTERN)
-        )
-    }
+        private fun convertToWeatherTime(wi: WeatherInfo): WeatherTime {
+            val state = wi.weather.first()
+            return WeatherTime(
+                description = state.description.lowercase(getLocal()),
+                icon = state.iconConvertToUrl(),
+                temp = wi.main.temp.toInt(),
+                pressure = wi.main.pressure,
+                windSpeed = String.format("%.1f", wi.wind.speed),
+                precipitation = getPrecipitation(wi),
+                date = wi.dateText.convertToDate(DAY_FULL_TIME_PATTERN)
+            )
+        }
 
-    private fun getPrecipitation(weather: WeatherInfo): String {
-        val num = weather.rain?.height ?: weather.snow?.height
-        return if (num != null) {
-            String.format("%.1f mm", num)
-        } else "0,0 mm"
+        private fun getPrecipitation(weather: WeatherInfo): String {
+            val num = weather.rain?.height ?: weather.snow?.height
+            return if (num != null) {
+                String.format("%.1f mm", num)
+            } else "0,0 mm"
+        }
     }
 }

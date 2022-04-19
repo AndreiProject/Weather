@@ -11,6 +11,9 @@ internal const val PRECIPITATION = "0,0 mm"
 internal const val ICON_TAG = "04d"
 internal const val IMG_URL = "https://openweathermap.org/img/wn/$ICON_TAG.png"
 
+internal const val ANY_STRING = ""
+internal const val ANY_INT = -1
+
 internal fun getWeatherTime(temp: Int, time: String): WeatherTime {
     return WeatherTime(
         temp,

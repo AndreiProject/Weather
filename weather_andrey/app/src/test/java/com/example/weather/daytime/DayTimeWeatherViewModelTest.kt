@@ -22,12 +22,10 @@ class DayTimeWeatherViewModelTest {
     private lateinit var repository: WeatherRepositoryImpl
 
     @BeforeEach
-    fun setUp() {
-        openMocks(this)
-    }
+    fun setUp() { openMocks(this) }
 
     @Test
-    fun `check DayTimeWeatherViewModel default state fields`() {
+    fun `check DayTimeWeatherViewModel default state fields`(): Unit = runBlocking {
         val useCase = getUseCase(repository)
 
         val model = DayTimeWeatherViewModel(useCase)

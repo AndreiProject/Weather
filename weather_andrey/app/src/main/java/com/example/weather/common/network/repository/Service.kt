@@ -12,6 +12,6 @@ interface Service {
         @Query("appid") keyId: String,
         @Query("cnt") cnt: Int,
         @Query("lang") lang: String,
-        @Query("units") units: String
+        @Query("units") units: String,
     ): Response<WeatherModel>
 }

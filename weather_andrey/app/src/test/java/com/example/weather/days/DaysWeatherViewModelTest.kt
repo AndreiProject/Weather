@@ -2,12 +2,7 @@ package com.example.weather.days
 
 import com.example.weather.common.network.repository.WeatherRepositoryImpl
 import com.example.weather.days.asserts.*
-import com.example.weather.days.DaysWeatherViewModel
 import com.example.weather.common.InstantExecutorExtension
-import com.example.weather.days.UPDATE_VM_DELAY
-import com.example.weather.days.getDaysWeatherVMStatePostUpdate
-import com.example.weather.days.getUseCase
-import com.example.weather.days.getUseCase_ThrowError
 import org.junit.jupiter.api.extension.ExtendWith
 import org.junit.jupiter.api.*
 import org.mockito.*
@@ -35,7 +30,7 @@ class DaysWeatherViewModelTest {
     }
 
     @Test
-    fun `check DaysWeatherViewModel default state fields`() {
+    fun `check DaysWeatherViewModel default state fields`(): Unit = runBlocking {
         val useCase = getUseCase(repository)
 
         val model = DaysWeatherViewModel(useCase)
@@ -62,9 +57,8 @@ class DaysWeatherViewModelTest {
 
     @Test
     @ExperimentalCoroutinesApi
-    fun `check DaysWeatherViewModel update result is error`() = runBlocking {
-        val useCase = getUseCase_ThrowError(repository)
-
+    fun `check DaysWeatherViewModel update result is error`(): Unit = runBlocking {
+        val useCase = getUseCase_ThrowError()
         val model = DaysWeatherViewModel(useCase)
         launch() {
             delay(UPDATE_VM_DELAY)

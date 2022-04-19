@@ -45,7 +45,7 @@ internal suspend fun getUseCase(repository: WeatherRepositoryImpl): WeatherGette
     return WeatherGetterImpl(repository)
 }
 
-internal fun getUseCase_ThrowError(repository: WeatherRepositoryImpl): WeatherGetter {
-    repositoryMock_GetWeatherMethod_ThenReturn_BodyIsNull(repository)
+internal suspend fun getUseCase_ThrowError(): WeatherGetter {
+    val repository = repositoryMock_GetWeatherMethod_ThenReturn_BodyIsNull()
     return WeatherGetterImpl(repository)
 }
